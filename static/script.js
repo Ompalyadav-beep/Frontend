@@ -1,6 +1,6 @@
 // --- Configuration ---
 // Dynamically determine API base URL based on environment
-const PRODUCTION_API_URL = 'https://backend-6-lnvt.onrender.com';
+const PRODUCTION_API_URL = 'https://ytbackend-9v25.onrender.com';
 const LOCAL_API_URL = 'http://127.0.0.1:5000';
 
 // Auto-detect environment: use local URL if on localhost, otherwise use production
