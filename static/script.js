@@ -113,17 +113,24 @@ function renderVideoCards(videosToRender, containerId, isScraped = false) {
         }
 
         let thumbnailUrl = video.thumbnail;
+
+        // Clean up videoId if it exists to ensure it's valid
+        if (videoId) {
+            // Extract only the valid part of the videoId (first 11 characters)
+            videoId = videoId.toString().substring(0, 11);
+        }
+
         if (!thumbnailUrl && videoId) {
             thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
         } else if (!thumbnailUrl) {
-            thumbnailUrl = 'placeholder_thumbnail.jpg'; // You should have a placeholder image
+            thumbnailUrl = 'static/download.jpeg'; // Using existing image file
         }
 
         const card = document.createElement('div');
         card.className = 'video-card';
         card.innerHTML = `
             <a href="${videoUrl}" target="_blank" rel="noopener noreferrer">
-                <img class="thumbnail" src="${thumbnailUrl}" alt="Video thumbnail for ${video.title || 'Video'}" onerror="this.onerror=null;this.src='placeholder_thumbnail.jpg'; this.alt='Fallback thumbnail';">
+                <img class="thumbnail" src="${thumbnailUrl}" alt="Video thumbnail for ${video.title || 'Video'}" onerror="this.onerror=null;this.src='static/download.jpeg'; this.alt='Fallback thumbnail';">
             </a>
             <div class="video-info">
                 <div class="video-title">${video.title || 'N/A'}</div>
